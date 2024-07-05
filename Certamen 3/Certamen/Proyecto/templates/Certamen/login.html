@@ -1,0 +1,29 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color:#005e90;
+    }
+
+</style>
+
+<div class="texto3">Iniciar Sesión </div>
+
+<div class="container" id="login">
+  <form data-bitwarden-watching="1" method="post" >
+    {% csrf_token %}
+    <div class="mb-4 relative">
+        <input type="text" placeholder="Nombre de usuario" id="username" name="username" class="w-full p-3 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <div class="mb-6 relative">
+        <input type="password" placeholder="Tu Contraseña" id="password" name="password" class="w-full p-3 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <br>
+    <button type="submit">Iniciar sesión</button>
+</form>
+</div>
+<script>
+  const passwordInput = document.getElementById('password');
+</script>
+{% endblock %}
