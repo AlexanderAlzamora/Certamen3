@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    body {
+        background-color:#3c6194;
+    }
+    .container {
+            margin-left: 36%; 
+            padding-top: 50px;
+        }
+    .texto3{
+    position: absolute;
+    top: 200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 80px;
+    color: #fff;
+    display: flex;
+}
+</style>
+
+<div class="texto3" style="left:34%;">Iniciar Sesión</div>
+<div class="container">
+  <form data-bitwarden-watching="1" method="post" >
+    {% csrf_token %}
+    <div class="mb-4 relative">
+        <input type="text" placeholder="Nombre de usuario" id="username" name="username" class="w-full p-3 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <div class="mb-6 relative">
+        <input type="password" placeholder="Tu Contraseña" id="password" name="password" class="w-full p-3 rounded-lg border border-zinc-300 focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+    </div>
+    <br>
+    <button type="submit">Iniciar sesión</button>
+</form>
+</div>
+<script>
+  const passwordInput = document.getElementById('password');
+</script>
+{% endblock %}

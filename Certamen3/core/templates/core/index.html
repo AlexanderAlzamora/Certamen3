@@ -1,0 +1,13 @@
+{% extends 'core/base.html' %}
+
+{% load static %}
+   
+
+{%block content %}
+    <img src="{% static 'imagenes/Estacion.jpg' %}" alt="" class="full-width-image">
+    <div class="texto1" style="left:40%;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Bienvenidos</div>
+    <div class="texto2"style="left:48%;color: black;font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">ENC</div>
+    <a href="{% url 'iniciarsesion' %}" class="btn btn-warning" id="boton1">INICIAR SESION</a>
+        
+
+{% endblock %}

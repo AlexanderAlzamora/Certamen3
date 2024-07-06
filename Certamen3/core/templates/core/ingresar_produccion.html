@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<form action="{%url 'nueva_produccion'%}" method="post">
+  <div>
+    <h1 >Añade tu sistema de produccion</h1>
+  </div>
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="txtNombreproyecto" class="form-label">Codigo Combustible</label>
+        <input type="text" class="form-control" id="txtCombustible" name="txtCombustible" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="txtNombrestudiante" class="form-label">Litros Producidos</label>
+        <input type="text" class="form-control" id="txtProduccion" name="txtProduccion">
+    </div>
+    
+    <div class="mb-3">
+      <label for="cboTipo" class="form-label">Turno</label>
+      <select class="form-select" aria-label="Default select example" id="eleccionTurno" name="eleccionTurno" required>
+          <option selected>Seleccione</option>
+          <option value="AM" >AM</option>
+          <option value="PM" >PM</option>
+          <option value="MM">MM</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="txtprofesor" class="form-label">Fecha Produccion:</label>
+      <input type="text" class="form-control" id="txtfecha" name="txtfecha" default value="DD/MM/AAAA" required>
+    </div>
+    <div class="mb-3">
+      <label for="txtprofesor" class="form-label">Hora de registro</label>
+      <input type="text" class="form-control" id="txtHora" name="txtHora" required>
+    </div>
+    <div>
+      <input class="btn btn-primary" id="boton2" type="submit" value="Enviar" required>
+    </div>
+    
+</form>
+{% endblock %}

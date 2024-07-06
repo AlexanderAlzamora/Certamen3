@@ -1,0 +1,32 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Mis Registros</h2>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Código Combustible</th>
+                    <th>Litros Combustible</th>
+                    <th>Fecha Producción</th>
+                    <th>Turno</th>
+                    <th>Hora Registro</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for registro in registros %}
+                <tr>
+                    <td>{{ registro.CodigoCombustible }}</td>
+                    <td>{{ registro.LitrosCombustible }}</td>
+                    <td>{{ registro.FechaProduccion }}</td>
+                    <td>{{ registro.DefinirTurno }}</td>
+                    <td>{{ registro.Horaregistro }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
