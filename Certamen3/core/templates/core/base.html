@@ -22,9 +22,9 @@
                 <div class="navbar-nav ms-auto">
                     {% if user.is_authenticated %}
                         {% if user.is_staff %}
-                        <a class="nav-link" href="{% url 'nuevo_proyecto' %}">NUEVO PROYECTO</a>
+                       
                         {% else %}
-                            <a class="nav-link" href="{% url 'nueva_produccion' %}">Ingresar Produccion</a>
+                            <a class="nav-link" href="{% url 'agregar_produccion' %}">Ingresar Produccion</a>
                             <a class="nav-link" href="{% url 'ver_registros' %}">Ver Mis Registros</a>
                         {% endif %}
                             <a class="nav-link" href="{% url 'logout' %}">LOG OUT</a>        

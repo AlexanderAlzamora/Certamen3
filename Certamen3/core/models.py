@@ -1,23 +1,35 @@
 from django.db import models
 from django.contrib.auth.models import User
+class Producto(models.Model):
+    codigo= models.CharField(max_length=3)
+    nombre = models.CharField(max_length=100)
 
 
-    
+    def __str__(self):
+        return self.nombre
 
-Turno=[
-    ("AM","AM"),
-    ("PM","PM"),
-    ("AM","AM"),
-]
-    
+class Planta(models.Model):
+    codigo= models.CharField(max_length=3)
+    nombre = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nombre
 
 class Registro(models.Model):
-    CodigoCombustible= models.CharField(max_length=3)
-    LitrosCombustible= models.CharField(max_length=50)
-    FechaProduccion= models.CharField(max_length=50)
-    DefinirTurno=models.CharField(max_length=50,choices=Turno)
-    Horaregistro=models.CharField(max_length=300) 
+    TURNO_CHOICES = [
+        ('AM', 'Mañana'),
+        ('PM', 'Tarde'),
+        ('MM', 'Noche'),
+    ]
+
+    CodigoCombustible = models.CharField(max_length=100)
+    LitrosCombustible = models.FloatField()
+    DefinirTurno = models.CharField(max_length=2, choices=TURNO_CHOICES)
+    FechaProduccion = models.DateField()
+    Horaregistro = models.TimeField()
     operador = models.ForeignKey(User, on_delete=models.CASCADE)
-    def __str__(self) -> str:
+    planta = models.ForeignKey('Planta', on_delete=models.CASCADE)
+    producto = models.ForeignKey('Producto', on_delete=models.CASCADE)
+
+    def __str__(self):
         return self.CodigoCombustible
-    

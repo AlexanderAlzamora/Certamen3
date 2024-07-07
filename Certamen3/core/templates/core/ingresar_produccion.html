@@ -1,42 +1,75 @@
 {% extends 'core/base.html' %}
 
 {% block content %}
-
-<form action="{%url 'nueva_produccion'%}" method="post">
+<style>
+  #boton3{
+    display: flex;
+    position: absolute;
+    top: 1050px;
+    left: 30%;
+    text-align: center;
+}
+</style>
+<form action="{% url 'agregar_produccion' %}" method="post">
   <div>
-    <h1 >Añade tu sistema de produccion</h1>
+    <h1>Añade tu sistema de producción</h1>
   </div>
-    {% csrf_token %}
-    <div class="mb-3">
-        <label for="txtNombreproyecto" class="form-label">Codigo Combustible</label>
-        <input type="text" class="form-control" id="txtCombustible" name="txtCombustible" required>
-    </div>
+  {% csrf_token %}
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+  <div class="mb-3">
+    <label for="txtCombustible" class="form-label">Código Combustible</label>
+    <input type="text" class="form-control" id="txtCombustible" name="txtCombustible" required>
+  </div>
 
-    <div class="mb-3">
-        <label for="txtNombrestudiante" class="form-label">Litros Producidos</label>
-        <input type="text" class="form-control" id="txtProduccion" name="txtProduccion">
-    </div>
-    
-    <div class="mb-3">
-      <label for="cboTipo" class="form-label">Turno</label>
-      <select class="form-select" aria-label="Default select example" id="eleccionTurno" name="eleccionTurno" required>
-          <option selected>Seleccione</option>
-          <option value="AM" >AM</option>
-          <option value="PM" >PM</option>
-          <option value="MM">MM</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label for="txtprofesor" class="form-label">Fecha Produccion:</label>
-      <input type="text" class="form-control" id="txtfecha" name="txtfecha" default value="DD/MM/AAAA" required>
-    </div>
-    <div class="mb-3">
-      <label for="txtprofesor" class="form-label">Hora de registro</label>
-      <input type="text" class="form-control" id="txtHora" name="txtHora" required>
-    </div>
-    <div>
-      <input class="btn btn-primary" id="boton2" type="submit" value="Enviar" required>
-    </div>
-    
+  <div class="mb-3">
+    <label for="txtProduccion" class="form-label">Litros Producidos</label>
+    <input type="text" class="form-control" id="txtProduccion" name="txtProduccion">
+  </div>
+
+  <div class="mb-3">
+    <label for="eleccionTurno" class="form-label">Turno</label>
+    <select class="form-select" id="eleccionTurno" name="eleccionTurno" required>
+      <option selected disabled>Seleccione el Turno</option>
+      <option value="AM">Mañana</option>
+      <option value="PM">Tarde</option>
+      <option value="MM">Noche</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="txtfecha" class="form-label">Fecha Producción</label>
+    <input type="date" class="form-control" id="txtfecha" name="txtfecha">
+  </div>
+
+  <div class="mb-3">
+    <label for="txtHora" class="form-label">Hora de Registro</label>
+    <input type="time" class="form-control" id="txtHora" name="txtHora">
+  </div>
+
+  <div class="mb-3">
+    <label for="planta" class="form-label">Planta</label>
+    <select class="form-select" id="planta" name="planta" required>
+      <option selected disabled>Seleccione la Planta</option>
+      {% for planta in plantas %}
+        <option value="{{ planta.id }}">{{ planta.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="producto" class="form-label">Producto</label>
+    <select class="form-select" id="producto" name="producto" required>
+      <option selected disabled>Seleccione el Producto</option>
+      {% for producto in productos %}
+        <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div>
+    <input class="btn btn-primary" id="boton3" type="submit" value="Enviar">
+  </div>
 </form>
 {% endblock %}

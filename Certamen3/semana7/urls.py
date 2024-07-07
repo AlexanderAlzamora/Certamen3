@@ -23,7 +23,7 @@ urlpatterns = [
     path('', views.index, name="home"),
     path('InicioSesion/', views.Sesion, name="iniciarsesion"),
     path('logout/', views.logout_view, name='logout'), 
-    path('Ingresar_produccion/', views.nuevo_proyecto, name="nueva_produccion"),
-    path('nueva_produccion/', views.agregar_proyecto, name="agregar_proyecto"),
+    path('Produccion/', views.nuevo_proyecto, name="produccion"),
+    path('nueva_produccion/', views.registrar_produccion, name="agregar_produccion"),
     path('ver_registros/', views.ver_produccion, name='ver_registros'),
 ]
