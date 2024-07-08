@@ -27,7 +27,7 @@ def Sesion(request):
             if  user.is_staff:
                 return redirect('/proyectos')   #si son correctas y el usario es profesor redirecciona a proyectos
             else:
-                 return redirect('/Ingresar_produccion') #si son correctas y el usuario es alumno redirecciona a ingresar un nuevo proyecto
+                 return redirect('agregar_produccion') #si son correctas y el usuario es alumno redirecciona a ingresar un nuevo proyecto
         else:
             return render(request, 'core/login.html')
     else:
@@ -48,7 +48,7 @@ def registrar_produccion(request):
     # Mostrar los registros
     
     if request.method == 'POST':
-        codigo_combustible = request.POST.get('txtCombustible')
+        
         litros_producidos = request.POST.get('txtProduccion')
         turno = request.POST.get('eleccionTurno')
         fecha_produccion = request.POST.get('txtfecha')
@@ -63,7 +63,7 @@ def registrar_produccion(request):
                 producto = Producto.objects.get(id=producto_id)
                 
                 registro = Registro(
-                    CodigoCombustible=codigo_combustible,
+                    
                     LitrosCombustible=litros_producidos,
                     DefinirTurno=turno,
                     FechaProduccion=fecha_produccion,

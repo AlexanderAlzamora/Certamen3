@@ -18,9 +18,15 @@
   {% if error %}
     <div class="alert alert-danger">{{ error }}</div>
   {% endif %}
+
   <div class="mb-3">
-    <label for="txtCombustible" class="form-label">Código Combustible</label>
-    <input type="text" class="form-control" id="txtCombustible" name="txtCombustible" required>
+    <label for="producto" class="form-label">Código de Combustible</label>
+    <select class="form-select" id="producto" name="producto" required>
+      <option selected disabled>Seleccione un Código</option>
+      {% for producto in productos %}
+        <option value="{{ producto.id }}">{{ producto.codigo }}</option>
+      {% endfor %}
+    </select>
   </div>
 
   <div class="mb-3">

@@ -18,7 +18,7 @@
             <tbody>
                 {% for registro in registros %}
                 <tr>
-                    <td>{{ registro.CodigoCombustible }}</td>
+                    <td>{{ registro.producto.codigo }}</td>
                     <td>{{ registro.LitrosCombustible }}</td>
                     <td>{{ registro.FechaProduccion }}</td>
                     <td>{{ registro.DefinirTurno }}</td>
