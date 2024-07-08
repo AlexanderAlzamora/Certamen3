@@ -1,8 +1,8 @@
 {% extends 'core/base.html' %}
 {% load static %}
 {% block content %}
-<div class="container">
-    <h2 class="my-4">Mis Registros</h2>
+<div class="container my-4">
+    <h2>Mis Registros</h2>
 
     <div class="table-responsive">
         <table class="table table-striped">
@@ -13,6 +13,8 @@
                     <th>Fecha Producción</th>
                     <th>Turno</th>
                     <th>Hora Registro</th>
+                    <th>Última Edición</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -23,6 +25,10 @@
                     <td>{{ registro.FechaProduccion }}</td>
                     <td>{{ registro.DefinirTurno }}</td>
                     <td>{{ registro.Horaregistro }}</td>
+                    <td>{{ registro.UltimaEdicion }}</td>
+                    <td>
+                        <a href="{% url 'editar_registro' registro.id %}" class="btn btn-warning">Editar</a> <!-- Esto toma el ID del registro para saber cual esta editando y lo envia a editar registro-->
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>

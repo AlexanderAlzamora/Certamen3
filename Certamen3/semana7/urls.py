@@ -26,5 +26,6 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'), 
     path('nueva_produccion/', views.registrar_produccion, name="agregar_produccion"),
     path('ver_registros/', views.ver_produccion, name='ver_registros'),
+    path('registros/editar/<int:pk>/', views.editar_registro, name='editar_registro'),
     
 ]

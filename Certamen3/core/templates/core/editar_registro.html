@@ -1,0 +1,12 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+<div class="container my-4">
+    <h2>Editar Registro</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} <!-- Trae desde forms.py el formulario -->
+        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+    </form>
+</div>
+{% endblock %}

@@ -16,7 +16,7 @@
   </div>
   {% csrf_token %}
   {% if error %}
-    <div class="alert alert-danger">{{ error }}</div>
+    <div class="alert alert-danger">{{ error }}</div> <!-- Mostrar un mensaje de error específico dentro de la interfaz de usuario cuando ocurre algún error -->
   {% endif %}
 
   <div class="mb-3">
@@ -59,7 +59,7 @@
     <select class="form-select" id="planta" name="planta" required>
       <option selected disabled>Seleccione la Planta</option>
       {% for planta in plantas %}
-        <option value="{{ planta.id }}">{{ planta.nombre }}</option>
+        <option value="{{ planta.id }}">{{ planta.nombre }}</option> <!-- Esto permite seleccionar las opciones creadas en el Django Admin -->
       {% endfor %}
     </select>
   </div>
@@ -69,7 +69,7 @@
     <select class="form-select" id="producto" name="producto" required>
       <option selected disabled>Seleccione el Producto</option>
       {% for producto in productos %}
-        <option value="{{ producto.id }}">{{ producto.nombre }}</option>
+        <option value="{{ producto.id }}">{{ producto.nombre }}</option> <!-- Esto permite seleccionar las opciones creadas en el Django Admin -->
       {% endfor %}
     </select>
   </div>

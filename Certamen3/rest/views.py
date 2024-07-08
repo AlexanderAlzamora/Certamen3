@@ -16,7 +16,7 @@ class RegistroViewSet(viewsets.ModelViewSet):
     filterset_fields = ['FechaProduccion']
     filterset_class = RegistroFilter
 
-    @action(detail=False, methods=['get'])
+    @action(detail=False, methods=['get']) #Forma de extender vistas basadas en clases en Django REST Framework
     def suma_combustible(self, request):
         resultados = Registro.objects.values('planta','producto').annotate(total_combustible=Sum('LitrosCombustible'))
         data = [{'planta': resultado['planta'], 'total_combustible': resultado['total_combustible'], 'producto' : resultado['producto']} for resultado in resultados]

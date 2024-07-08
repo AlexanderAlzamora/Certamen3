@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Registro,Planta,Producto
 from django.shortcuts import render, get_object_or_404, redirect
 from django.shortcuts import render
-from django.utils import timezone
+from .forms import RegistroForm
 
 def index(request):
     return render(request,'core/index.html')
@@ -24,10 +24,7 @@ def Sesion(request):
         
         if user is not None:
             login(request, user)
-            if  user.is_staff:
-                return redirect('/proyectos')   #si son correctas y el usario es profesor redirecciona a proyectos
-            else:
-                 return redirect('agregar_produccion') #si son correctas y el usuario es alumno redirecciona a ingresar un nuevo proyecto
+            return redirect('agregar_produccion') 
         else:
             return render(request, 'core/login.html')
     else:
@@ -37,9 +34,6 @@ def Sesion(request):
 def logout_view(request):
         logout(request)
         return redirect('home')
-
-def nuevo_proyecto(request):
-    return render(request, 'core/ingresar_produccion.html')
 
 
 def registrar_produccion(request):
@@ -52,7 +46,7 @@ def registrar_produccion(request):
         litros_producidos = request.POST.get('txtProduccion')
         turno = request.POST.get('eleccionTurno')
         fecha_produccion = request.POST.get('txtfecha')
-        hora_registro = request.POST.get('txtHora', timezone.now().time())
+        hora_registro = request.POST.get('txtHora')
         planta_id = request.POST.get('planta')
         producto_id = request.POST.get('producto')
         operador = request.user  # Asumiendo que el operador es el usuario actual
@@ -85,3 +79,15 @@ def ver_produccion(request):
 
     # Mostrar los registros
     return render(request, 'core/VerProduccion.html', {'registros': registros})
+
+def editar_registro(request, pk):
+    registro = get_object_or_404(Registro, pk=pk) #Obtiene un objeto específico del modelo Registro según su clave primaria
+    if request.method == "POST": #Si coloca todos los datos entra al if, sino lo envia nuevamente al formulario
+        registros = Registro.objects.filter(operador=request.user)
+        form = RegistroForm(request.POST, instance=registro)
+        if form.is_valid():
+            form.save()
+            return render(request, 'core/VerProduccion.html', {'registros': registros})
+    else:
+        form = RegistroForm(instance=registro)
+    return render(request, 'core/editar_registro.html', {'form': form})
