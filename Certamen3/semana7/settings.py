@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'core',
     'rest',
 ]
+
+#https://hooks.slack.com/services/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
+
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
 }
@@ -136,3 +139,5 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+SLACK_WEBHOOK_URL ='https://hooks.slack.com/services/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'
